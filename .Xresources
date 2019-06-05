@@ -1,0 +1,84 @@
+! --- ~/.Xresources ------------------------------------------------------------
+! ------------------------------------------------------------------------------
+! --- generated with 4bit Terminal Color Scheme Designer -----------------------
+! ------------------------------------------------------------------------------
+! --- http://ciembor.github.com/4bit -------------------------------------------
+! ------------------------------------------------------------------------------
+
+! --- special colors ---
+
+*background: #2e2e2e
+*foreground: #e2e2e2
+
+! --- standard colors ---
+
+! black
+*color0: #090909
+
+! bright_black
+*color8: #2e2e2e
+
+! red
+*color1: #da934c
+
+! bright_red
+*color9: #e1a76d
+
+! green
+*color2: #4cda93
+
+! bright_green
+*color10: #6de1a7
+
+! yellow
+*color3: #93da4c
+
+! bright_yellow
+*color11: #a7e16d
+
+! blue
+*color4: #934cda
+
+! bright_blue
+*color12: #a76de1
+
+! magenta
+*color5: #da4c93
+
+! bright_magenta
+*color13: #e16da7
+
+! cyan
+*color6: #4c93da
+
+! bright_cyan
+*color14: #6da7e1
+
+! white
+*color7: #e2e2e2
+
+! bright_white
+*color15: #f3f3f3
+
+
+! ------------------------------------------------------------------------------
+! --- end of terminal colors section -------------------------------------------
+! ------------------------------------------------------------------------------
+! 
+! urxvt settings
+urxvt*depth: 32
+urxvt*background:  [60]#2e2e2e
+
+URxvt*font: xft:Monospace:pixelsize=16
+URxvt*boldFont: xft:Monospace:pixelsize=16
+
+! Fix font space
+URxvt*letterSpace: -1
+
+! Scrollbar
+URxvt.scrollStyle:          rxvt
+URxvt.scrollBar:            false
+
+! mute Bell
+URxvt.visualBell: True
+
