@@ -7,3 +7,6 @@ Dependencies:
 - polybar
 - vim
 - feh (for setting wallpaper)
+- tlp (for polybar-script power-usage)
+
+The folder "polybar-scripts" is a copy from here: https://github.com/polybar/polybar-scripts
