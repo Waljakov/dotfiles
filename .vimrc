@@ -70,3 +70,6 @@ autocmd! bufwritepost .vimrc source %
 
 " better copy&paste
 set clipboard=unnamedplus
+
+" Enable markdown syntax highlighting for *.md files
+au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown

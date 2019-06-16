@@ -56,7 +56,7 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
 modules-left = i3
-modules-center = filesystem memory cpu temperature battery power_now
+modules-center = filesystem memory cpu temperature battery power_usage
 modules-right =  pulseaudio xkeyboard popup-calendar powermenu
 
 ;modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
@@ -423,9 +423,9 @@ screenchange-reload = true
 margin-top = 5
 margin-bottom = 5
 
-[module/power_now]
+[module/power_usage]
 type = custom/script
-exec = sh ~/.config/polybar/power_usage.sh
+exec = sh ~/.config/polybar/my-polybar-scripts/power_usage/power_usage.sh
 interval = 2
 format-underline = #ffb52a 
 
