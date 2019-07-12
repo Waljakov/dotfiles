@@ -6,8 +6,12 @@ Dependencies:
 - i3-gaps
 - polybar
 - vim
+- compton (for transparent urxvt)
+- rofi (seearch for programs)
+- yad (show popup-windows e.g. polybar popup-calendar)
+- xdotool (show popup-calendar in correct position)
 - feh (for setting wallpaper)
 - tlp (for polybar-script power-usage)
-- vundle
+- vundle (packagee managment for vim)
 
 The folder "polybar-scripts" is a copy from here: https://github.com/polybar/polybar-scripts
