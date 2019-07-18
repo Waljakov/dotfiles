@@ -14,6 +14,7 @@ Dependencies:
 - tlp (for polybar-script power-usage)
 - vundle (package managment for vim)
 	- vimtex (vim package for enhanced latex usage)
-	- neocomplete (package for autocomplete eg in vimtex)  
+	- neocomplete (package for autocomplete eg. in vimtex)  
+- zathura (pdf-viewer with vim-keys; supports forward and backwards search, eg. for vimtex)
 
 The folder "polybar-scripts" is a copy from here: https://github.com/polybar/polybar-scripts
