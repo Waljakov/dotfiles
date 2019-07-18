@@ -24,12 +24,6 @@ set encoding=utf-8
 " options, so any other options should be set AFTER setting 'compatible'.
 "set compatible
 
-" Vim5 and later versions support syntax highlighting. Uncommenting the next
-" line enables syntax highlighting by default.
-if has("syntax")
-  syntax on
-endif
-
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
 set background=dark
@@ -45,6 +39,13 @@ set background=dark
 if has("autocmd")
   filetype plugin indent on
 endif
+
+" Vim5 and later versions support syntax highlighting. Uncommenting the next
+" line enables syntax highlighting by default.
+if has("syntax")
+  syntax on
+endif
+
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
@@ -64,6 +65,7 @@ endif
 
 " custom settings
 set number
+set tabstop=4
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
@@ -105,6 +107,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 " Plugin to show a live preview of markdown
 " All of your Plugins must be added before the following line
+Plugin 'lervag/vimtex'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -119,3 +122,20 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+" Variables for vimtex
+let g:vimtex_view_method = 'zathura'
+let g:neocomplete#enable_at_startup = 1
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+let g:neocomplete#sources#omni#input_patterns.tex = g:vimtex#re#neocomplete
+let g:vimtex_complete_close_braces = 1
+let g:neocomplete#enable_auto_select = 1
+let g:vimtex_imaps_leader = '#'
+ function! Synctex()
+  execute "silent !zathura --synctex-forward " . line('.') . ":" . col('.') . ":" . bufname('%') . " " . g:syncpdf
+  redraw!
+endfunction
+map <C-enter> :call Synctex()<cr>
+ 

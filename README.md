@@ -1,4 +1,4 @@
-# dotfiles
+# Dotfiles
 My Collection of dotfiles for arch, i3, polybar...
 Stored with a bare Git-repository (more info: https://www.atlassian.com/git/tutorials/dotfiles)
 
@@ -12,6 +12,8 @@ Dependencies:
 - xdotool (show popup-calendar in correct position)
 - feh (for setting wallpaper)
 - tlp (for polybar-script power-usage)
-- vundle (packagee managment for vim)
+- vundle (package managment for vim)
+	- vimtex (vim package for enhanced latex usage)
+	- neocomplete (package for autocomplete eg in vimtex)  
 
 The folder "polybar-scripts" is a copy from here: https://github.com/polybar/polybar-scripts
