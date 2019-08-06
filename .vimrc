@@ -65,7 +65,9 @@ endif
 
 " custom settings
 set number
+set relativenumber
 set tabstop=4
+set showbreak=------>\    
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
@@ -109,6 +111,10 @@ Plugin 'VundleVim/Vundle.vim'
 " All of your Plugins must be added before the following line
 Plugin 'lervag/vimtex'
 
+Plugin 'Shougo/neosnippet.vim'
+Plugin 'Shougo/neosnippet-snippets'
+Plugin 'dylanaraps/wal.vim'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -132,10 +138,35 @@ endif
 let g:neocomplete#sources#omni#input_patterns.tex = g:vimtex#re#neocomplete
 let g:vimtex_complete_close_braces = 1
 let g:neocomplete#enable_auto_select = 1
+let g:vimtex_fold_enabled = 1
+let g:vimtex_fold_manual = 1
+set fillchars=fold:\ 
 let g:vimtex_imaps_leader = '#'
+let g:vimtex_format_enabled = 1
  function! Synctex()
   execute "silent !zathura --synctex-forward " . line('.') . ":" . col('.') . ":" . bufname('%') . " " . g:syncpdf
   redraw!
 endfunction
 map <C-enter> :call Synctex()<cr>
  
+" Neosnippet settings
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+let g:neosnippet#enable_conceal_markers = 0
+" if has('conceal')
+"   set conceallevel=2 concealcursor=niv
+" endif

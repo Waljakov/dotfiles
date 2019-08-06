@@ -5,7 +5,7 @@ Stored with a bare Git-repository (more info: https://www.atlassian.com/git/tuto
 Dependencies:
 - i3-gaps
 - polybar
-- vim
+- vim (install vim-gtk for +clipboard support)
 - compton (for transparent urxvt)
 - rofi (seearch for programs)
 - yad (show popup-windows e.g. polybar popup-calendar)
