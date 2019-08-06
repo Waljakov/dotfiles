@@ -16,5 +16,6 @@ Dependencies:
 	- vimtex (vim package for enhanced latex usage)
 	- neocomplete (package for autocomplete eg. in vimtex)  
 - zathura (pdf-viewer with vim-keys; supports forward and backwards search, eg. for vimtex)
+- pywal (for themes and wallpaper)
 
 The folder "polybar-scripts" is a copy from here: https://github.com/polybar/polybar-scripts

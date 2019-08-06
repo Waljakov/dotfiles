@@ -10,6 +10,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $mod2 Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -27,14 +28,18 @@ set $mod Mod4
 # font, it doesn’t scale on retina/hidpi displays.
 
 # Execute on startup
-exec_always feh --bg-scale ~/.wallpaper/jupiter.png
+#exec_always feh --bg-scale ~/.wallpaper/jupiter.png
 #exec_always start-pulseaudio-x11
 exec_always compton
-# exec_always unclutter -idle 3
+exec_always unclutter -idle 3
 exec_always --no-startup-id sh ~/.config/polybar/launch.sh
-exec_always "setxkbmap -layout us,de"
+exec_always "setxkbmap -layout de,us"
 exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
 exec_always nm-applet
+exec redshift-gtk 
+exec nextcloud
+exec wal -R
+
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -111,6 +116,11 @@ bindsym $mod+v split v
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
+# move to scratchpad
+# view scratchpad
+bindsym $mod2+Shift+space move scratchpad
+bindsym $mod2+space scratchpad show
+
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+Shift+s layout stacking
 bindsym $mod+t layout tabbed
@@ -134,8 +144,8 @@ bindsym $mod+Ctrl+r exec shutdown -r now
 #bindsym $mod+d focus child
 
 # monitors
-# set $Mon1 DVI-D-0
-# set $Mon2 HDMI-0
+set $Mon1 DVI-D-0
+set $Mon2 HDMI-0
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -151,16 +161,16 @@ set $ws9 "9 "
 set $ws10 "10 "
 
 # workspace assignment
-# workspace $ws1 output $Mon1
-# workspace $ws2 output $Mon2
-# workspace $ws3 output $Mon1
-# workspace $ws4 output $Mon1
-# workspace $ws5 output $Mon2
-# workspace $ws6 output $Mon2
-# workspace $ws7 output $Mon2
-# workspace $ws8 output $Mon2
-# workspace $ws9 output $Mon2
-# workspace $ws10 output $Mon2
+workspace $ws1 output $Mon1
+workspace $ws2 output $Mon2
+workspace $ws3 output $Mon1
+workspace $ws4 output $Mon1
+workspace $ws5 output $Mon2
+workspace $ws6 output $Mon2
+workspace $ws7 output $Mon2
+workspace $ws8 output $Mon2
+workspace $ws9 output $Mon2
+workspace $ws10 output $Mon2
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -190,17 +200,18 @@ assign [class="Steam"] $ws10
 assign [class="Thunderbird"] $ws3
 for_window [class="Spotify"] move to workspace $ws9 
 
-set $bg-color 	         #5e5e5e
-set $inactive-bg-color   #2e2e2e88
-set $text-color          #ff5c33
-set $inactive-text-color #e0e0e0
-set $urgent-bg-color     #ba3b46
+set 					$black				#000000
+set_from_resource 		$bg-color 			i3wm.color0 #000000
+set_from_resource 		$inactive-bg-color  i3wm.color3 #2e2e2e
+set_from_resource		$text-color	        i3wm.color2 #ff5c33
+set_from_resource		$inactive-text-color i3wm.color4 #e0e0e0
+set_from_resource		$urgent-bg-color    i3wm.color1 #ba3b46
 
 # window colors
 #                       border               background         text                 indicator
-client.focused          $text-color          $text-color        $text-color          #ffd191 
-client.unfocused        $inactive-bg-color   $inactive-bg-color $inactive-text-color $bg-color 
-client.focused_inactive $inactive-bg-color   $inactive-bg-color $inactive-text-color $bg-color
+client.focused          $text-color          $text-color        $text-color          $inactive_text-color 
+client.unfocused        $bg-color			 $inactive-bg-color $inactive-text-color $bg-color 
+client.focused_inactive $bg-color			 $inactive-bg-color $inactive-text-color $bg-color
 client.urgent           $urgent-bg-color     $urgent-bg-color   $text-color          $bg-color
 
 # bar

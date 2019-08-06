@@ -36,17 +36,17 @@
 ! bright_yellow
 *color11: #a7e16d
 
-! blue
-*color4: #934cda
+! orange
+*color5: #934cda
 
 ! bright_blue
-*color12: #a76de1
+*color13: #a76de1
 
-! magenta
-*color5: #da4c93
+! purple
+*color4: #CA8F43
 
-! bright_magenta
-*color13: #e16da7
+! bright_orange
+*color12: #ffcc5
 
 ! cyan
 *color6: #4c93da
