@@ -28,7 +28,7 @@ set $mod2 Mod1
 # font, it doesn’t scale on retina/hidpi displays.
 
 # Execute on startup
-#exec_always feh --bg-scale ~/.wallpaper/jupiter.png
+exec_always feh --bg-scale ~/.wallpaper/jupiter.png
 #exec_always start-pulseaudio-x11
 exec_always compton
 exec_always unclutter -idle 3
