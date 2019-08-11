@@ -230,7 +230,25 @@ alias   \begin{figure} \figure
 		\centering
 		\includegraphics[${2:width=${3\}\textwidth}]{${4}}
 		\caption{${5}}
-		\label{${6}}
+		\label{fig:${6}}
+	\end{figure}
+
+snippet minipages
+alias subfig subfigure 
+	\begin{figure}[${1}]
+		\centering
+		\begin{minipage}[t]{${2}\textwidth}
+			\centering
+			\includegraphics[width=0.9\linewidth]{${3}}
+			\caption{${4}}
+			\label{fig:${5}}
+		\end{minipage}
+		\begin{minipage}[t]{${6}\textwidth}
+			\centering
+			\includegraphics[width=0.9\linewidth]{${7}}
+			\caption{${8}}
+			\label{fig:${9}}
+		\end{minipage}
 	\end{figure}
 
 snippet filecontents
@@ -388,6 +406,10 @@ alias text \t \text{
 snippet \sqrt
 alias sqrt \sqrt{
     \sqrt{${1}}${0}
+
+snippet \ce
+alias ce \ce{
+    \ce{${1}}${0}
 # ========== FONT ==========
 
 snippet bfseries
