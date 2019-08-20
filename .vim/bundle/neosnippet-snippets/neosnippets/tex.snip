@@ -228,10 +228,19 @@ snippet figure
 alias   \begin{figure} \figure
 	\begin{figure}[${1}]
 		\centering
-		\includegraphics[${2:width=${3\}\textwidth}]{${4}}
+		\includegraphics[width=${3}\textwidth]{${4}}
 		\caption{${5}}
 		\label{fig:${6}}
 	\end{figure}
+
+snippet wrapfigure
+alias wrap \begin{wrapfigure}
+    \begin{wrapfigure}{r}{${1}\textwidth}
+	    \centering
+    	\includegraphics[width=${2}\textwidth]{${3}}
+    	\caption{${4}}
+    	\label{fig:${5}}
+    \end{wrapfigure}
 
 snippet minipages
 alias subfig subfigure 
@@ -242,7 +251,8 @@ alias subfig subfigure
 			\includegraphics[width=0.9\linewidth]{${3}}
 			\caption{${4}}
 			\label{fig:${5}}
-		\end{minipage}
+		\end{minipage}%
+        \hspace={0.05\textwidth}
 		\begin{minipage}[t]{${6}\textwidth}
 			\centering
 			\includegraphics[width=0.9\linewidth]{${7}}
@@ -393,7 +403,7 @@ alias int \int
 
 snippet \SI
 alias si SI \SI \si \unit \siunit
-    \SI{${1}}{${2}}
+    \SI{${1}}{${2}}${0}
 
 snippet \SIrange
 alias    sirange SIrange \SIrange
