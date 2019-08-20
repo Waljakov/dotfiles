@@ -39,6 +39,7 @@ exec_always nm-applet
 exec redshift-gtk 
 exec nextcloud
 exec wal -R
+exec kdeconnect-indicator
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -208,11 +209,11 @@ set_from_resource		$inactive-text-color i3wm.color4 #e0e0e0
 set_from_resource		$urgent-bg-color    i3wm.color1 #ba3b46
 
 # window colors
-#                       border               background         text                 indicator
-client.focused          $text-color          $text-color        $text-color          $inactive_text-color 
-client.unfocused        $bg-color			 $inactive-bg-color $inactive-text-color $bg-color 
-client.focused_inactive $bg-color			 $inactive-bg-color $inactive-text-color $bg-color
-client.urgent           $urgent-bg-color     $urgent-bg-color   $text-color          $bg-color
+#                       border               background         text                 indicator				child_border
+client.focused          $text-color          $text-color        $text-color          $inactive_text-color 	$text-color
+client.unfocused        $bg-color			 $inactive-bg-color $inactive-text-color $bg-color 				$bg_color
+client.focused_inactive $bg-color			 $inactive-bg-color $inactive-text-color $bg-color				$bg_color
+client.urgent           $urgent-bg-color     $urgent-bg-color   $text-color          $bg-color				$urgent-bg-color
 
 # bar
 # bar {
@@ -268,6 +269,7 @@ gaps outer -10
 
 # i3-gaps dont work with titlebars
 for_window [class="^.*"] border pixel 1
+# default_border pixel 1 # Steam has no borders
 
 # Pulse Audio controls
 # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume

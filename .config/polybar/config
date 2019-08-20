@@ -28,12 +28,12 @@ secondary = ${xrdb:color5:#e60053}
 alert = ${xrdb:color6:#bd2c40}
 
 [bar/example]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = HDMI-0
 width = 100%
 height = 27
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 6.0
+radius = 0.0
 fixed-center = true
 
 background = ${colors.background}
@@ -64,6 +64,7 @@ modules-right =  pulseaudio xkeyboard popup-calendar powermenu
 tray-position = right
 tray-padding = 2
 ;tray-background = #0063ff
+tray-detached = false
 
 ;wm-restack = bspwm
 ;wm-restack = i3
