@@ -243,7 +243,7 @@ alias wrap \begin{wrapfigure}
     \end{wrapfigure}
 
 snippet minipages
-alias subfig subfigure 
+alias multifig multifigure 
 	\begin{figure}[${1}]
 		\centering
 		\begin{minipage}[t]{${2}\textwidth}
@@ -252,7 +252,7 @@ alias subfig subfigure
 			\caption{${4}}
 			\label{fig:${5}}
 		\end{minipage}%
-        \hspace={0.05\textwidth}
+        \hspace{0.05\textwidth}
 		\begin{minipage}[t]{${6}\textwidth}
 			\centering
 			\includegraphics[width=0.9\linewidth]{${7}}
@@ -260,6 +260,25 @@ alias subfig subfigure
 			\label{fig:${9}}
 		\end{minipage}
 	\end{figure}
+
+snippet subfigure
+alias subfig \subfigure
+    \begin{figure}[${1}]
+        \begin{subfigure}[t]{${2}\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{${3}}
+            \caption{${4}}
+            \label{fig:${5}}
+        \end{subfigure}%
+        \begin{subfigure}[t]{${6}\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{${7}}
+            \caption{${8}}
+            \label{fig:${9}}
+        \end{subfigure}
+        \caption{${10}}
+        \label{fig:${11}}
+    \end{figure}
 
 snippet filecontents
 alias   \begin{filecontents} \filecontents
@@ -420,6 +439,24 @@ alias sqrt \sqrt{
 snippet \ce
 alias ce \ce{
     \ce{${1}}${0}
+
+snippet \partial
+alias partial \partial{
+    \frac{\partial ${1}}{\partial ${2}} ${0}
+
+snippet \deriv
+alias deriv derive \deriv{
+    \frac{\text{d} ${1}}{\text{d} ${2}} ${0}
+
+
+snippet \vec
+alias \vec \vec{ vec
+    \vec{${1}}${0}
+
+snippet \dot
+alias dot \dot{
+    \dot{${1}}${0}
+
 # ========== FONT ==========
 
 snippet bfseries
