@@ -264,6 +264,7 @@ alias multifig multifigure
 snippet subfigure
 alias subfig \subfigure
     \begin{figure}[${1}]
+        \centering
         \begin{subfigure}[t]{${2}\textwidth}
             \centering
             \includegraphics[width=0.9\linewidth]{${3}}
@@ -277,7 +278,6 @@ alias subfig \subfigure
             \label{fig:${9}}
         \end{subfigure}
         \caption{${10}}
-        \label{fig:${11}}
     \end{figure}
 
 snippet filecontents
@@ -420,6 +420,14 @@ snippet \int
 alias int \int
     \int_{${1}}^{${2}}${3} \, \text{d}${0}
 
+snippet \ket
+alias ket \ket{
+    \ket{${1}} ${0}
+
+snippet \bra
+alias bra \bra{
+    \bra{${1}} ${0}
+
 snippet \SI
 alias si SI \SI \si \unit \siunit
     \SI{${1}}{${2}}${0}
@@ -549,9 +557,9 @@ snippet \textit
 alias   textit \textit{
 	\textit{${1:TARGET}}${0}
 
-snippet \underline
-alias under underline \underline{
-    \underline{${1:TARGET}}${0}
+snippet \ul
+alias under ul underline \ul{ \underline \underline{
+    \ul{${1:TARGET}}${0}
 
 # ==== BEAMER ====
 snippet frame

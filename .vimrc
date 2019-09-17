@@ -143,7 +143,10 @@ let g:vimtex_fold_manual = 1
 set fillchars=fold:\ 
 let g:vimtex_imaps_leader = '#'
 let g:vimtex_format_enabled = 1
- function! Synctex()
+let g:vimtex_quickfix_latexlog = {
+          \ 'underfull' : 0,
+          \}
+function! Synctex()
   execute "silent !zathura --synctex-forward " . line('.') . ":" . col('.') . ":" . bufname('%') . " " . g:syncpdf
   redraw!
 endfunction

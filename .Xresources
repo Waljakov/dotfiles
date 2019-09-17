@@ -5,61 +5,42 @@
 ! --- http://ciembor.github.com/4bit -------------------------------------------
 ! ------------------------------------------------------------------------------
 
-! --- special colors ---
-
-*background: #2e2e2e
-*foreground: #e2e2e2
-
-! --- standard colors ---
+! special
+*.foreground:   #ffffff
+*.background:   #161616
+*.cursorColor:  #ffffff
 
 ! black
-*color0: #090909
-
-! bright_black
-*color8: #2e2e2e
+*.color0:       #222222
+*.color8:       #666666
 
 ! red
-*color1: #da934c
-
-! bright_red
-*color9: #e1a76d
+*.color1:       #e84f4f
+*.color9:       #d23d3d
 
 ! green
-*color2: #4cda93
-
-! bright_green
-*color10: #6de1a7
+*.color2:       #b7ce42
+*.color10:      #bde077
 
 ! yellow
-*color3: #93da4c
+*.color3:       #fea63c
+*.color11:      #ffe863
 
-! bright_yellow
-*color11: #a7e16d
+! blue
+*.color4:       #66aabb
+*.color12:      #aaccbb
 
-! orange
-*color5: #934cda
-
-! bright_blue
-*color13: #a76de1
-
-! purple
-*color4: #CA8F43
-
-! bright_orange
-*color12: #ffcc5
+! magenta
+*.color5:       #b7416e
+*.color13:      #e16a98
 
 ! cyan
-*color6: #4c93da
-
-! bright_cyan
-*color14: #6da7e1
+*.color6:       #6d878d
+*.color14:      #42717b
 
 ! white
-*color7: #e2e2e2
-
-! bright_white
-*color15: #f3f3f3
-
+*.color7:       #dddddd
+*.color15:      #cccccc
 
 ! ------------------------------------------------------------------------------
 ! --- end of terminal colors section -------------------------------------------
