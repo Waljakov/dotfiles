@@ -28,7 +28,7 @@ set $mod2 Mod1
 # font, it doesn’t scale on retina/hidpi displays.
 
 # Execute on startup
-exec_always feh --bg-scale ~/.wallpaper/jupiter.png
+exec_always feh --bg-scale ~/.wallpaper/21-9_nebula.jpg
 #exec_always start-pulseaudio-x11
 exec_always compton
 exec_always unclutter -idle 3
@@ -145,8 +145,8 @@ bindsym $mod+Ctrl+r exec shutdown -r now
 #bindsym $mod+d focus child
 
 # monitors
-set $Mon1 DVI-D-0
-set $Mon2 HDMI-0
+set $Mon1 DP-4
+set $Mon2 DVI-D-0 
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -244,10 +244,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym odiaeresis resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -255,10 +255,19 @@ mode "resize" {
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
+        # Gap sizes
+        bindsym Shift+h gaps outer current plus 10
+		bindsym Shift+l gaps outer current minus 10
+		bindsym Shift+j gaps inner current plus 5
+		bindsym Shift+k gaps inner current minus 5
+
+		# center
+		bindsym Shift+c gaps horizontal current 100
+
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+		bindsym $mod+r mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -266,10 +275,9 @@ bindsym $mod+r mode "resize"
 # Gap settings
 gaps inner 10
 gaps outer -10 
-
 # i3-gaps dont work with titlebars
 for_window [class="^.*"] border pixel 1
-# default_border pixel 1 # Steam has no borders
+# default_border pixel 1 # Steam has no border
 
 # Pulse Audio controls
 # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
