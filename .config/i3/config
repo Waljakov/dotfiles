@@ -262,7 +262,7 @@ mode "resize" {
 		bindsym Shift+k gaps inner current minus 5
 
 		# center
-		bindsym Shift+c gaps horizontal current 100
+		bindsym Shift+c gaps horizontal current toggle 300
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
