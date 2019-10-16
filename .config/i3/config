@@ -29,7 +29,7 @@ set $mod2 Mod1
 
 # Execute on startup
 exec_always feh --bg-scale ~/.wallpaper/21-9_nebula.jpg
-#exec_always start-pulseaudio-x11
+exec_always start-pulseaudio-x11
 exec_always compton
 exec_always unclutter -idle 3
 exec_always --no-startup-id sh ~/.config/polybar/launch.sh
@@ -47,11 +47,6 @@ floating_modifier $mod
 
 default_orientation vertical #start in opposite orientation from your monitor
 for_window [class=".*"] split toggle #toggles split at each new window
-
-# Thinkpad Volume Key-bindings
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
 
 # Mouse behaviour yes|no ; output|none
 focus_follows_mouse no
@@ -279,16 +274,17 @@ gaps outer -10
 for_window [class="^.*"] border pixel 1
 # default_border pixel 1 # Steam has no border
 
-# Pulse Audio controls
-# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-
 # Media player controls
 # bindsym XF86AudioPlay exec playerctl play
 # bindsym XF86AudioPause exec playerctl pause
 # bindsym XF86AudioNext exec playerctl next
 # bindsym XF86AudioPrev exec playerctl previous
+
+# Volume Key-bindings
+bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -5%
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +5%
+
 
 # Launch Programs
 bindsym $mod+w exec firefox 
@@ -297,6 +293,7 @@ bindsym $mod+Shift+s exec spotify
 bindsym $mod+m exec thunderbird
 bindsym $mod+c [instance="pycalc"] scratchpad show; [instance="pycalc"] move position center
 bindsym $mod+y [class="KeePass2"] scratchpad show; [class="KeePass2"] move position center
+bindsym $mod+Shift+f exec urxvt -e ranger 
 
 bindsym $mod+d exec rofi -show run -theme dmenu
 bindsym $mod+Shift+d exec sudo rofi -show run -theme dmenu
