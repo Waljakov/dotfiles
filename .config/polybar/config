@@ -17,18 +17,21 @@
 ;==========================================================
 
 [colors]
-background = ${xrdb:color0:#222}
-;background = #222
-background-alt = #444
-foreground = ${xrdb:color7:#222}
-;foreground = #dfdfdf
-foreground-alt = #555
-primary = ${xrdb:color4:#ffb52a}
-secondary = ${xrdb:color5:#e60053}
-alert = ${xrdb:color6:#bd2c40}
+background = ${xrdb:background}
+background-alt = ${xrdb:color8}
+foreground = ${xrdb:foreground}
+foreground-alt = ${xrdb:color15}
+red = ${xrdb:color1}
+green = ${xrdb:color2}
+yellow = ${xrdb:color3}
+blue = ${xrdb:color4}
+magenta = ${xrdb:color5}
+cyan = ${xrdb:color6}
+secondary = ${xrdb:color5}
+alert = ${xrdb:color9}
 
-[bar/example]
-monitor = HDMI-0
+[bar/laptop]
+;monitor = eDP-1-1
 width = 100%
 height = 27
 ;offset-x = 1%
@@ -45,8 +48,8 @@ line-color = #f00
 border-size = 0
 border-color = #00000000
 
-padding-left = 0
-padding-right = 0
+padding-left = 1
+padding-right = 1
 
 module-margin-left = 1
 module-margin-right = 2
@@ -54,16 +57,19 @@ module-margin-right = 2
 font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
+font-3 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular
+font-4 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid
+font-5 = Font Awesome 5 Free,Font Awesome 5 Free Regular:style=Regular
 
 modules-left = i3
-modules-center = filesystem memory cpu temperature 
-modules-right =  pulseaudio xkeyboard popup-calendar powermenu
+modules-center = filesystem memory cpu temperature battery
+;power_usage
+modules-right =  system-bluetooth-bluetoothctl pulseaudio player-mpris-tail xkeyboard popup-calendar
 
 ;modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
 
 tray-position = right
 tray-padding = 2
-;tray-background = #0063ff
 tray-detached = false
 
 ;wm-restack = bspwm
@@ -88,17 +94,17 @@ label = %title:0:30:...%
 type = internal/xkeyboard
 blacklist-0 = num lock
 
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
+format-prefix-underline = ${colors.cyan}
 
 label-layout = %layout%
-label-layout-underline = ${colors.secondary}
+label-layout-underline = ${colors.cyan}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
+label-indicator-background = ${colors.cyan}
+label-indicator-underline = ${colors.cyan}
 
 [module/filesystem]
 type = internal/fs
@@ -106,7 +112,10 @@ interval = 25
 
 mount-0 = /
 
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+format-mounted-prefix = " "
+format-mounted-prefix-foreground = ${colors.foreground-alt}
+format-mounted-underline = ${colors.blue}
+label-mounted = %{F#888888}%mountpoint%%{F-}: %free% free
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -115,7 +124,7 @@ type = internal/bspwm
 
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
+label-focused-underline= ${colors.red}
 label-focused-padding = 2
 
 label-occupied = %index%
@@ -137,37 +146,38 @@ type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
+enable-click = true
 
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
 
 label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
+label-mode-foreground = ${colors.foreground}
+label-mode-background = ${colors.background}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${module/bspwm.label-focused-underline}
+label-focused = %name%
+label-focused-background = ${colors.background-alt}
+label-focused-underline = ${colors.red}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
+label-unfocused = %name%
 label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
+label-visible = %name%
+label-visible-background = ${colors.background-alt}
+label-visible-underline = ${colors.red}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%
-label-urgent-background = ${module/bspwm.label-urgent-background}
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
 ; Separator in between workspaces
-; label-separator = |
+label-separator = |
 
 
 [module/mpd]
@@ -208,37 +218,62 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format = <ramp-coreload>
+
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.alert}
-label = %percentage:2%%
+format-underline = ${colors.magenta}
+label = %percentage-cores%%
+
+ramp-coreload-spacing = 0
+ramp-coreload-0 = %{F#888888}▁%{F-}
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = %{F#d23d3d}█%{F-}
 
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 60
+base-temperature = 30
+warn-temperature = 80
+
+format-offset = -12
 
 format = <ramp> <label>
-format-underline = ${colors.alert}
+format-underline = ${colors.magenta}
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
+label-warn-foreground = ${colors.alert}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+ramp-0 = " "
+ramp-1 = " "
+ramp-2 = " "
 ramp-foreground = ${colors.foreground-alt}
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.secondary}
-label = %percentage_used%%
+format-underline = ${colors.green}
+format = <label> <ramp-used>
+label = %gb_used%
+
+ramp-used-0 = %{F#888888}▁%{F-}
+ramp-used-1 = %{F#888888}▂%{F-}
+ramp-used-2 = ▃
+ramp-used-3 = ▄
+ramp-used-4 = ▅
+ramp-used-5 = ▆
+ramp-used-6 = ▇
+ramp-used-7 = %{F#d23d3d}█%{F-}
 
 [module/wlan]
 type = internal/network
@@ -258,7 +293,7 @@ format-disconnected =
 ramp-signal-0 = 
 ramp-signal-1 = 
 ramp-signal-2 = 
-ramp-signal-3 = 
+ramp-signal-3 =
 ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground-alt}
 
@@ -297,21 +332,25 @@ label = %date% %time%
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
-label-volume-foreground = ${root.foreground}
 
-label-muted = 🔇 muted
-label-muted-foreground = #666
+format-volume = <label-volume> <bar-volume>
+label-volume = %{F#888888}%{F-} %percentage%%
+label-volume-foreground = ${colors.foreground}
+
+format-volume-underline = ${colors.green}
+
+label-muted =  muted
+label-muted-foreground = ${colors.foreground-alt}
+format-muted-underline = ${colors.green}
 
 bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
+bar-volume-foreground-0 = ${colors.green}
+bar-volume-foreground-1 = ${colors.green}
+bar-volume-foreground-2 = ${colors.green}
+bar-volume-foreground-3 = ${colors.green}
+bar-volume-foreground-4 = ${colors.green}
+bar-volume-foreground-5 = ${colors.green}
+bar-volume-foreground-6 = ${colors.alert}
 bar-volume-gradient = false
 bar-volume-indicator = |
 bar-volume-indicator-font = 2
@@ -320,6 +359,8 @@ bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
+
+click-right = pavucontrol &
 
 [module/alsa]
 ;type = internal/alsa
@@ -355,30 +396,38 @@ battery = BAT0
 adapter = AC
 full-at = 98
 
-format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
+time-format = %Hh %Mm
 
-format-discharging = <animation-discharging> <label-discharging>
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.yellow}
+
+format-discharging =  <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = " "
+label-discharging = %percentage%% %{F#888888}%{F-} %consumption%W %{F#888888}%{F-} %time%
+
+format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
+ramp-capacity-0 = %{F#d23d3d}%{F-}
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
 ramp-capacity-foreground = ${colors.foreground-alt}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
 
@@ -428,7 +477,11 @@ margin-bottom = 5
 type = custom/script
 exec = sh ~/.config/polybar/my-polybar-scripts/power_usage/power_usage.sh
 interval = 2
-format-underline = #ffb52a 
+format-underline = ${colors.yellow}
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-suffix = " mW"
+format-suffix-foreground = ${colors.foreground}
 
 [module/system-gpu-intel]
 type = custom/script
@@ -443,7 +496,30 @@ type = custom/script
 exec = ~/.config/polybar/polybar-scripts/popup-calendar/popup-calendar.sh
 interval = 5
 click-left = ~/.config/polybar/polybar-scripts/popup-calendar/popup-calendar.sh --popup
-format-underline = #0a6cf5
+format-underline = ${colors.blue}
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-suffix = " |"
+format-suffix-foreground = ${colors.foreground-alt}
+format-suffix-underline = ${colors.background}
 `
-; vim:ft=dosini
-;
+[module/system-bluetooth-bluetoothctl]
+type = custom/script
+exec = /home/michar/.config/polybar/polybar-scripts/system-bluetooth-bluetoothctl/system-bluetooth-bluetoothctl.sh
+tail = true
+click-left = /home/michar/.config/polybar/polybar-scripts/system-bluetooth-bluetoothctl/system-bluetooth-bluetoothctl.sh --toggle &
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.green}
+
+[module/player-mpris-tail]
+type = custom/script
+exec = /home/michar/.config/polybar/polybar-scripts/player-mpris-tail/player-mpris-tail.py -f '%{F#888888}{icon}%{F-} {:t20:{artist} - {title}:}' --icon-playing '' --icon-paused '' --icon-stopped '' --icon-none ""
+tail = true
+
+format-underline = ${colors.green}
+
+click-left = /home/michar/.config/polybar/polybar-scripts/player-mpris-tail/player-mpris-tail.py previous &
+click-right = /home/michar/.config/polybar/polybar-scripts/player-mpris-tail/player-mpris-tail.py next &
+click-middle = /home/michar/.config/polybar/polybar-scripts/player-mpris-tail/player-mpris-tail.py play-pause &
