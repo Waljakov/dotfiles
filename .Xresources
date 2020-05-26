@@ -50,8 +50,8 @@
 urxvt*depth: 32
 urxvt*background:  [60]#2e2e2e
 
-URxvt*font: xft:Monospace:pixelsize=16
-URxvt*boldFont: xft:Monospace:pixelsize=16
+URxvt*font: xft:DejaVuSansMono:pixelsize=16
+URxvt*boldFont: xft:DejaVuSansMono:pixelsize=16
 
 ! Fix font space
 URxvt*letterSpace: -1
