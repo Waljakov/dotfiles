@@ -1,48 +1,50 @@
 ! --- ~/.Xresources ------------------------------------------------------------
 ! ------------------------------------------------------------------------------
-! --- generated with 4bit Terminal Color Scheme Designer -----------------------
-! ------------------------------------------------------------------------------
-! --- http://ciembor.github.com/4bit -------------------------------------------
+! --- Gruvbox colorscheme ------------------------------------------------------
 ! ------------------------------------------------------------------------------
 
-! special
-*.foreground:   #ffffff
-*.background:   #161616
-*.cursorColor:  #ffffff
+*.foreground:  #e6d4a3
+*.background:  #1e1e1e
+*.cursorColor: #e6d4a3
+!
+! Black
+*.color0:      #1e1e1e
+*.color8:      #7f7061
+!
+! Red
+*.color1:      #be0f17
+*.color9:      #f73028
+!
+! Green
+*.color2:      #868715
+*.color10:     #aab01e
+!
+! Yellow
+*.color3:      #cc881a
+*.color11:     #f7b125
+!
+! Blue
+*.color4:      #377375
+*.color12:     #719586
+!
+! Magenta
+*.color5:      #a04b73
+*.color13:     #c77089
+!
+! Cyan
+*.color6:      #578e57
+*.color14:     #7db669
+!
+! White
+*.color7:      #978771
+*.color15:     #e6d4a3
+!
+! Bold, Italic, Underline
+*.colorBD:     #ffffff
+!*.colorIT:
+!*.colorUL:! 
 
-! black
-*.color0:       #222222
-*.color8:       #444444
-
-! red
-*.color1:       #e84f4f
-*.color9:       #d23d3d
-
-! green
-*.color2:       #b7ce42
-*.color10:      #bde077
-
-! yellow
-*.color3:       #fea63c
-*.color11:      #ffe863
-
-! blue
-*.color4:       #66aabb
-*.color12:      #aaccbb
-
-! magenta
-*.color5:       #b7416e
-*.color13:      #e16a98
-
-! cyan
-*.color6:       #6d878d
-*.color14:      #42717b
-
-! white
-*.color7:       #dddddd
-*.color15:      #888888
-
-! ------------------------------------------------------------------------------
+!------------------------------------------------------------------------------
 ! --- end of terminal colors section -------------------------------------------
 ! ------------------------------------------------------------------------------
  
@@ -50,8 +52,8 @@
 urxvt*depth: 32
 urxvt*background:  [60]#2e2e2e
 
-URxvt*font: xft:Monospace:pixelsize=16
-URxvt*boldFont: xft:Monospace:pixelsize=16
+URxvt*font: xft:monospace:pixelsize=16
+URxvt*boldFont: xft:monospace:pixelsize=16
 
 ! Fix font space
 URxvt*letterSpace: -1
