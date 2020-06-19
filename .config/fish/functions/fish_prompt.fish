@@ -1,0 +1,1 @@
+/home/michar/.local/share/omf/themes/spacefish/fish_prompt.fish
