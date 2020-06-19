@@ -61,9 +61,9 @@ font-3 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid
 font-4 = Font Awesome 5 Free,Font Awesome 5 Free Regular:style=Regular
 
 modules-left = i3
-modules-center = filesystem memory cpu temperature
+modules-center = filesystem memory cpu temperature battery
 ;power_usage
-modules-right =  pulseaudio player-mpris-tail xkeyboard popup-calendar
+modules-right =  system-bluetooth-bluetoothctl pulseaudio player-mpris-tail xkeyboard popup-calendar
 
 ;modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date u
 

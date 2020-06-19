@@ -3,44 +3,44 @@
 ! --- Gruvbox colorscheme ------------------------------------------------------
 ! ------------------------------------------------------------------------------
 
-*.foreground:  #e6d4a3
-*.background:  #1e1e1e
-*.cursorColor: #e6d4a3
+*.foreground:  #ebdbb2
+*.background:  #282828
+*.cursorColor: #fbf1c7
 !
 ! Black
-*.color0:      #1e1e1e
-*.color8:      #7f7061
+*.color0:      #1d2021
+*.color8:      #928374
 !
 ! Red
-*.color1:      #be0f17
-*.color9:      #f73028
+*.color1:      #cc241d
+*.color9:      #fb4934
 !
 ! Green
-*.color2:      #868715
-*.color10:     #aab01e
+*.color2:      #98971a
+*.color10:     #b8bb26
 !
 ! Yellow
-*.color3:      #cc881a
-*.color11:     #f7b125
+*.color3:      #d79921
+*.color11:     #fabd2f
 !
 ! Blue
-*.color4:      #377375
-*.color12:     #719586
+*.color4:      #458588
+*.color12:     #83a598
 !
 ! Magenta
-*.color5:      #a04b73
-*.color13:     #c77089
+*.color5:      #b16286
+*.color13:     #d3869b
 !
 ! Cyan
-*.color6:      #578e57
-*.color14:     #7db669
+*.color6:      #689d6a
+*.color14:     #8ec07c
 !
 ! White
-*.color7:      #978771
-*.color15:     #e6d4a3
+*.color7:      #ebdbb2
+*.color15:     #bdae93
 !
 ! Bold, Italic, Underline
-*.colorBD:     #ffffff
+*.colorBD:     #ebdbb2
 !*.colorIT:
 !*.colorUL:! 
 
@@ -53,7 +53,9 @@ urxvt*depth: 32
 urxvt*background:  [60]#2e2e2e
 
 URxvt*font: xft:DejaVuSansMono:pixelsize=16
-URxvt*boldFont: xft:DejaVuSansMono:pixelsize=16
+/* URxvt*font: xft:Terminess Powerline:pixelsize=16 */
+/* URxvt*boldFont: xft:DejaVuSansMono:pixelsize=16 */
+/* URxvt*font: xft:Droid Sans Mono for Powerline:size=12 */
 
 ! Fix font space
 URxvt*letterSpace: -1

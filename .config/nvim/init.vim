@@ -5,7 +5,8 @@ set mouse=nvi " enables mouse support for all modes
 " set nohlsearch " Stop highlighting search results permanently
 set noerrorbells
 set tabstop=4 softtabstop=4 " make tabstops and softtabstops 4 spaces long
-set shiftwidth=4 " display tabstops 4 spaces long
+set expandtab " Use spaces as tab
+set shiftwidth=4 " display indent 4 spaces long
 set smartindent " indent automatically
 set relativenumber
 set nu " show linenumbers
@@ -16,6 +17,9 @@ set clipboard+=unnamedplus " use 'standard' clipboard for yank
 set hidden " No warning (and no need for !) when changing from an unsaved buffer
 set nohlsearch " don't highlight search results
 set shell=bash " this is needed eg when using fish and ranger-plugin
+set acd " automatically change current directory to dir of active file
+
+set list " enable displaying symbols for tabs
 
 " Set undodir with filehistory instead of backup/swapfiles
 set noswapfile
@@ -52,16 +56,24 @@ Plug 'terryma/vim-multiple-cursors' " Multiple cursors like sublime
 Plug 'tpope/vim-surround' " adds surround command (n:'s', v:'s') to eg. edit braces
 Plug 'francoiscabrol/ranger.vim' " integrates ranger (<leader> f)
 Plug 'rbgrouleff/bclose.vim' " Dependency of ranger.vim, closing buffer wo window
+Plug 'tpope/vim-commentary' " adds gc(c) command to comment out a line
+Plug 'tpope/vim-fugitive' " adds git functionality to vim
+Plug 'vim-airline/vim-airline' " Costumizable, nice statusline
+Plug 'unblevable/quick-scope' " Highlight unique character per word in a line
+Plug 'chrisbra/Colorizer' " Show colorcodes in correct color
 
 " Initialize plugin system
 call plug#end()
+
+let mapleader = " "
 
 " set colorscheme
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'hard'
 set background=dark
-
-let mapleader = " "
+highlight Normal ctermbg=none " transparent background (from terminal emultator)
+nmap <leader>cc :colorscheme gruvbox<CR>
+nmap <leader>ct :highlight Normal ctermbg=none<CR>
 
 " remap movement between splits
 nnoremap <leader>h :wincmd h<CR>
@@ -70,9 +82,12 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 
 nnoremap <leader>H :wincmd H<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>J :wincmd J<CR>
+nnoremap <leader>K :wincmd K<CR>
+nnoremap <leader>L :wincmd L<CR>
+
+" Quickscope: Trigger a highlight only when pressing f and F.
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " ranger settings
 let g:ranger_replace_netrw = 1 " let vim open directories with ranger
@@ -82,11 +97,10 @@ nnoremap <leader>F :RangerNewTab<CR>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+        call CocAction('doHover')
+    endif
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
@@ -102,8 +116,8 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 let g:coc_snippet_next = '<tab>'" Use <c-space> to trigger completion.
@@ -123,10 +137,6 @@ nmap <leader>g] <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
 
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
 " File searching (in project)
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <Leader>ps :Rg<SPACE>
@@ -135,6 +145,9 @@ nnoremap <Leader>pf :Files<CR>
 
 " show undotree
 nnoremap <leader>u :UndotreeShow<CR>
+
+" Use Esc to escape terminal mode
+tnoremap <Esc> <C-\><C-n>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings for specific filetypes

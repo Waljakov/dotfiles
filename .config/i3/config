@@ -13,7 +13,7 @@ set $mod Mod4
 set $mod2 Mod1
 
 # Execute on startup
-exec_always feh --bg-scale ~/.wallpaper/jupiter.png
+exec_always feh --bg-center ~/.wallpaper/21-9_artistic_planet.jpg
 exec_always optimus-manager-qt
 exec_always start-pulseaudio-x11
 exec_always compton
@@ -44,16 +44,16 @@ bindsym $mod+Return exec i3-sensible-terminal
 # bindsym $mod+Return exec fish
 
 # Scratchpad calculator
-for_window [instance="calc"] floating enable
-for_window [instance="calc"] move scratchpad
-exec_always --no-startup-id urxvt -name calc
+for_window [title="floating_console"] floating enable
+for_window [title="floating_console"] move scratchpad
+exec_always --no-startup-id alacritty -t floating_console
 
 # Scratchpad ranger
-for_window [instance="ranger"] floating enable
-for_window [instance="ranger"] move scratchpad
-exec_always --no-startup-id urxvt -name ranger -e ranger
+for_window [title="ranger_float"] floating enable
+for_window [title="ranger_float"] move scratchpad
+exec_always --no-startup-id alacritty -t ranger_float -e ranger
 # increase width of ranger
-for_window [instance="ranger"] resize grow width 400 px
+for_window [title="ranger_float"] resize grow width 400 px
 
 # Polybar popup-calendar
 for_window [class="Yad" title="yad-calendar"] floating enable
@@ -196,6 +196,9 @@ set_from_resource               $urgent-color                   i3wm.color1 #ba3
 set_from_resource               $primary-color                  i3wm.color4 #ba3b46
 set_from_resource               $secondary-color                i3wm.color12 #ba3b46
 
+# show borders only when >1 window on workspace
+smart_borders on
+
 # window colors
 #                       border               background         text                 indicator                          child_border
 client.focused          $primary-color       $text-color        $text-color          $secondary-color                   $primary-color
@@ -273,8 +276,8 @@ bindsym $mod+w exec firefox
 bindsym $mod+s exec steam
 bindsym $mod+Shift+s exec spotify
 bindsym $mod+m exec thunderbird
-bindsym $mod+c [instance="calc"] scratchpad show; [instance="calc"] move position center
-bindsym $mod+Shift+f [instance="ranger"] scratchpad show; [instance="ranger"] move position center
+bindsym $mod+c [title="floating_console"] scratchpad show; [title="floating_console"] move position center
+bindsym $mod+Shift+f [title="ranger_float"] scratchpad show; [title="ranger_float"] move position center
 bindsym $mod+y [class="KeePass"] scratchpad show; [class="KeePass"] move position center
 bindsym $mod+z [class="KeePass"] scratchpad show; [class="KeePass"] move position center
 

@@ -4,18 +4,18 @@
  * Copyright: Dave Davenport
  */
 * {
-    background-color:      #16161688;
-    border-color:          #ffffff;
-    text-color:           #ffffff;
-    font:            "Monospace 12";
+    background-color:      #28282888;
+    border-color:          #edbdd2;
+    text-color:           #ebdbb2;
+    font:            "Roboto Mono for Powerline 12";
 }
 
 #window {
     anchor:     north;
     location:   north;
     width:      100%;
-    padding:    4px;
     children:   [ horibox ];
+    height:     27;
 }
 
 #horibox {
@@ -38,5 +38,5 @@
     padding: 0px 2px;
 }
 #element selected {
-    background-color: #66aabb;
+    background-color: #cc241d;
 }
