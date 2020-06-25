@@ -97,10 +97,11 @@ nnoremap <leader>F :RangerNewTab<CR>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-        call CocAction('doHover')
-    endif
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
@@ -137,6 +138,9 @@ nmap <leader>g] <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
 
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
 " File searching (in project)
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <Leader>ps :Rg<SPACE>
@@ -150,7 +154,14 @@ nnoremap <leader>u :UndotreeShow<CR>
 tnoremap <Esc> <C-\><C-n>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Mappings for specific filetypes
+" Mappings and settings for specific filetypes
 
 " Python
 nnoremap <leader>bp :CocCommand python.execInTerminal<CR>
+
+" Markdown
+" auto linebreak between words if line too long
+autocmd BufNewFile,BufRead *.md set tw=80
+autocmd BufNewFile,BufRead *.md set fo+=a
+" enable spell checking
+autocmd BufNewFile,BufRead *.md set spell
