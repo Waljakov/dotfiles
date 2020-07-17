@@ -61,11 +61,15 @@ Plug 'tpope/vim-fugitive' " adds git functionality to vim
 Plug 'vim-airline/vim-airline' " Costumizable, nice statusline
 Plug 'unblevable/quick-scope' " Highlight unique character per word in a line
 Plug 'chrisbra/Colorizer' " Show colorcodes in correct color
+Plug 'lervag/vimtex'
+Plug 'dkarter/bullets.vim' "Auto insert bulletpoints in a list
 
 " Initialize plugin system
 call plug#end()
 
+" Localleader for filespecific plugins
 let mapleader = " "
+let maplocalleader = " "
 
 " set colorscheme
 colorscheme gruvbox
@@ -75,11 +79,14 @@ highlight Normal ctermbg=none " transparent background (from terminal emultator)
 nmap <leader>cc :colorscheme gruvbox<CR>
 nmap <leader>ct :highlight Normal ctermbg=none<CR>
 
+" Display comments in italic font
+highlight Comment cterm=italic gui=italic
+
 " remap movement between splits
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
+" nnoremap <leader>h :wincmd h<CR>
+" nnoremap <leader>j :wincmd j<CR>
+" nnoremap <leader>k :wincmd k<CR>
+" nnoremap <leader>l :wincmd l<CR>
 
 nnoremap <leader>H :wincmd H<CR>
 nnoremap <leader>J :wincmd J<CR>
@@ -88,6 +95,9 @@ nnoremap <leader>L :wincmd L<CR>
 
 " Quickscope: Trigger a highlight only when pressing f and F.
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" Bullets Plugin
+let g:bullets_enabled_file_types = ['markdown', 'text', 'gitcommit', 'tex']
 
 " ranger settings
 let g:ranger_replace_netrw = 1 " let vim open directories with ranger
@@ -143,7 +153,7 @@ command! -nargs=0 Format :call CocAction('format')
 
 " File searching (in project)
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
-nnoremap <Leader>ps :Rg<SPACE>
+nnoremap <Leader>ps :Rg<CR>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
 
@@ -153,15 +163,32 @@ nnoremap <leader>u :UndotreeShow<CR>
 " Use Esc to escape terminal mode
 tnoremap <Esc> <C-\><C-n>
 
+" Vimtex
+" allow backwardsearch for vimtex
+let g:vimtex_latexmk_progname= '/usr/bin/nvr/'
+" Leader for insert mode
+let g:vimtex_imaps_leader= ';'
+" prevent vimtex not working when switching files
+let g:tex_flavor = 'latex'
+" auto linebreak after 80 chars
+let g:vimtex_format_enabled = 1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings and settings for specific filetypes
 
 " Python
-nnoremap <leader>bp :CocCommand python.execInTerminal<CR>
+" mapping for build
+autocmd BufNewFile,BufRead *.py nnoremap <leader>bp :CocCommand python.execInTerminal<CR>
 
 " Markdown
 " auto linebreak between words if line too long
+" make tabstops and softtabstops 2 spaces long
 autocmd BufNewFile,BufRead *.md set tw=80
-autocmd BufNewFile,BufRead *.md set fo+=a
 " enable spell checking
 autocmd BufNewFile,BufRead *.md set spell
+
+" Latex
+" map fzf search
+autocmd BufNewFile,BufRead *.tex nnoremap <C-p> :call vimtex#fzf#run()<cr>
+" enable spell checker
+autocmd BufNewFile,BufRead *.tex set spell

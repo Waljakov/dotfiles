@@ -55,6 +55,11 @@ exec_always --no-startup-id alacritty -t ranger_float -e ranger
 # increase width of ranger
 for_window [title="ranger_float"] resize grow width 400 px
 
+# Scratchpad Audio (pavuconrtrol)
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Pavucontrol"] move scratchpad
+exec_always --no-startup-id pavucontrol
+
 # Polybar popup-calendar
 for_window [class="Yad" title="yad-calendar"] floating enable
 
@@ -280,6 +285,7 @@ bindsym $mod+c [title="floating_console"] scratchpad show; [title="floating_cons
 bindsym $mod+Shift+f [title="ranger_float"] scratchpad show; [title="ranger_float"] move position center
 bindsym $mod+y [class="KeePass"] scratchpad show; [class="KeePass"] move position center
 bindsym $mod+z [class="KeePass"] scratchpad show; [class="KeePass"] move position center
+bindsym $mod+a [class="Pavucontrol"] scratchpad show; [class="pavucontrol"] move position center
 
 bindsym $mod+d exec rofi -show run -theme my_dmenu
 bindsym $mod+Shift+d exec sudo rofi -show run -theme my_dmenu

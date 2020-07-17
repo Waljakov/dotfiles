@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/michar/Documents/Studium/Masterarbeit/Thesis/sections'
+let g:netrw_dirhist_5='/home/michar/Documents/Studium/Masterarbeit/Thesis'
+let g:netrw_dirhist_4='/home/michar/Documents/Studium/Masterarbeit/Thesis/sections'
 let g:netrw_dirhist_3='/home/michar/Documents/Studium/Masterarbeit/Global_Fit'
 let g:netrw_dirhist_2='/home/michar/Documents/Studium/Masterarbeit/Global_Fit/Scripts'
 let g:netrw_dirhist_1='/home/michar/Documents/Studium/Masterarbeit/Global_Fit'
@@ -7,6 +10,3 @@ let g:netrw_dirhist_0='/home/michar/Documents/Studium/Masterarbeit/Global_Fit/Sc
 let g:netrw_dirhist_9='/home/michar/Documents/Studium/Masterarbeit'
 let g:netrw_dirhist_8='/home/michar/Documents/Studium/Masterarbeit/Global_Fit'
 let g:netrw_dirhist_7='/home/michar/Documents/Studium/Masterarbeit/Global_Fit/Scripts'
-let g:netrw_dirhist_6='/home/michar'
-let g:netrw_dirhist_5='/home/michar/.config/ranger'
-let g:netrw_dirhist_4='/home/michar/.config/nvim'
