@@ -1,3 +1,6 @@
 set selection-clipboard clipboard
 set synctex true
 set synctex-editor-command 'nvr --remote +"%{line}" "%{input}"'
+set highlight-color \#AAAAAA
+set highlight-active-color \#FFFF00
+set highlight-transparency 0.2

@@ -172,6 +172,8 @@ let g:vimtex_imaps_leader= ';'
 let g:tex_flavor = 'latex'
 " auto linebreak after 80 chars
 let g:vimtex_format_enabled = 1
+" Open pdf with zathura and allow forward search
+let g:vimtex_view_method = 'zathura'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings and settings for specific filetypes
@@ -192,3 +194,5 @@ autocmd BufNewFile,BufRead *.md set spell
 autocmd BufNewFile,BufRead *.tex nnoremap <C-p> :call vimtex#fzf#run()<cr>
 " enable spell checker
 autocmd BufNewFile,BufRead *.tex set spell
+" make tabstops and softtabstops 2 spaces long
+autocmd BufNewFile,BufRead *.tex set tw=80
